@@ -37,6 +37,14 @@ esac
         brew install jq
     fi
 
+    # Install dotnet
+    if [ "${OS}" = "linux" ]; then
+        curl -o- -L https://packages.microsoft.com/config/ubuntu/14.04/packages-microsoft-prod.deb | dpkg -i
+        apt-get install apt-transport-https
+        apt-get update || true
+        apt-get install dotnet-sdk-2.2
+    fi
+
     echo "installing yarn ${YARN_VERSION}"
     curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version ${YARN_VERSION}
 
